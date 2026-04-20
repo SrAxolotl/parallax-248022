@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parallax ejercicio</title>
+
+    <style>
+        body {
+            margin: 0;
+            background-color: #67a299;
+        }
+
+        img {
+            display: block;
+            margin: auto;
+        }
+
+        #parallax-container {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* FONDO */
+        #layer1 {
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/capas/Awebtfiol.png'); /* CAMBIA */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* CAPA 1 */
+        #layer2 {
+            position: absolute;
+            z-index: 2;
+            top: -100px;
+            left: -500px;
+            width: 10%;
+            height: 10%;
+        }
+
+        /* CAPA 2 */
+        #layer3 {
+            position: absolute;
+            z-index: 3;
+            top: 0px;
+            left: 0;
+            width: 100%;
+        }
+
+        /* CAPA 3 */
+        #layer4 {
+            position: absolute;
+            z-index: 4;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .completo {
+            width: 100%;
+        }
+
+        .contenido {
+            color: aliceblue;
+            padding: 60px 20px;
+            background-color: #b4055d;
+            text-align: center;
+            min-height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="parallax-container">
+
+        <div id="layer1"></div>
+
+        <div id="layer2">
+            <img src="/capas/Awebtfiol1.png"> <!-- CAMBIA -->
+        </div>
+
+        <div id="layer3">
+            <img class="completo" src="/capas/Awebtfiol2.png"> <!-- CAMBIA -->
+        </div>
+
+        <div id="layer4">
+            <img class="completo" src="/capas/Awebtfiol3.png"> <!-- CAMBIA -->
+        </div>
+
+    </div>
+
+    <section class="contenido">
+        <h2>Contenido</h2>
+        <p>Texto debajo del parallax</p>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const layer1 = document.getElementById('layer1');
+            const layer2 = document.getElementById('layer2');
+            const layer3 = document.getElementById('layer3');
+            const layer4 = document.getElementById('layer4');
+            const container = document.getElementById('parallax-container');
+
+            const speed1 = 0.4;
+            const speed2 = 0.2;
+            const speed3 = 0.1;
+            const speed4 = 0.05;
+
+            function updateParallax() {
+                const scrollOffset = container.getBoundingClientRect().top;
+
+                layer1.style.transform = `translate3d(0, ${scrollOffset * speed1}px, 0)`;
+                layer2.style.transform = `translate3d(0, ${scrollOffset * speed2}px, 0)`;
+                layer3.style.transform = `translate3d(0, ${scrollOffset * speed3}px, 0)`;
+                layer4.style.transform = `translate3d(0, ${scrollOffset * speed4}px, 0)`;
+            }
+
+            window.addEventListener('scroll', updateParallax);
+
+            updateParallax();
+        });
+    </script>
+
+</body>
+</html>
